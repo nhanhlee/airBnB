@@ -11,19 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.belongsTo(models.Order, { foreignKey: 'userId', as: 'userOd' })
-      User.hasMany(models.Comment, { foreignKey: 'userId', as: 'userCmt' })
+      User.hasMany(models.Comment, { foreignKey: 'userId' })
+      User.hasMany(models.Order, { foreignKey: 'userId' })
     }
-  }
+  };
   User.init({
-    userId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    passWord: DataTypes.STRING,
+    hash: DataTypes.STRING,
     phone: DataTypes.STRING,
     birthDay: DataTypes.DATE,
     gender: DataTypes.STRING,
-    role: DataTypes.STRING
+    role: DataTypes.STRING,
+    avatar: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',

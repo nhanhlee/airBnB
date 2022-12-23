@@ -12,8 +12,8 @@ const failCode = (res, data, message) => {
     })
 }
 
-const errorCode = (res, message) => {
-    res.status(500).send(message)
+const errorCode = (res, error) => {
+    res.status(500).send(error)
 }
 
 module.exports = {

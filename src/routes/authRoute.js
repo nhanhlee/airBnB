@@ -1,18 +1,11 @@
+
 const express = require('express');
 const authRoute = express.Router();
-const db = require('../models/index')
+const auth = require('../controllers/auth')
+const validation = require('../validation/index')
+const validator = require('../middlewares/validator')
 
-//db.User.findAll()
-
-authRoute.get('/signup', async (req, res) => {
-    try {
-        res.send("toi roi")
-        let data = await db.User.findAll()
-        console.log(data)
-        res.send(data)
-    } catch (error) {
-        console.log(error)
-    }
-})
+authRoute.post('/signup', validation.auth.signup, validator, auth.signup)
+authRoute.post('/signin', validation.auth.signin, validator, auth.signin)
 
 module.exports = authRoute
